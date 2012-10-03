@@ -1,17 +1,14 @@
 /**
- * A simple theme for reveal.js presentations, similar 
- * to the default theme. The accent color is darkblue; 
- * do a find-replace to change it.
+ * The default theme for reveal.js presentations.
  * 
- * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
- * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se; so is the theme - beige.css - that this is based off of.
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
 
 /*********************************************
  * FONT-FACE DEFINITIONS
  *********************************************/
 
-@import url(http://fonts.googleapis.com/css?family=News+Cycle:400,700);
+@import url(http://fonts.googleapis.com/css?family=Economica:400,700,400italic,700italic|PT+Sans+Narrow:400,700);
 
 
 /*********************************************
@@ -19,27 +16,22 @@
  *********************************************/
 
 body {
-	font-family: 'Lato', Times, 'Times New Roman', serif;
+	font-family: 'PT Sans Narrow', sans-serif;
 	font-size: 36px;
-	font-weight: 200;
+	font-weight: 400;
 	letter-spacing: -0.02em;
-	color: black !important;
+	color: #333;
 
-	background: white;
+	background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM1NTVhNWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTIwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background-color: #ffc40d;
+	background: -moz-radial-gradient(center, ellipse cover,  #ffe080 0%, #ffc40d 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffe080), color-stop(100%,#ffc40d));
+	background: -webkit-radial-gradient(center, ellipse cover,  #ffe080 0%,#ffc40d 100%);
+	background: -o-radial-gradient(center, ellipse cover,  #ffe080 0%,#ffc40d 100%);
+	background: -ms-radial-gradient(center, ellipse cover,  #ffe080 0%,#ffc40d 100%);
+	background: radial-gradient(center, ellipse cover,  #ffe080 0%,#ffc40d 100%);
 }
 
-::-moz-selection {
-    background:rgba(0, 0, 0, 0.99);
-	color: white; 
-}
-::-webkit-selection {
-    background:rgba(0, 0, 0, 0.99);
-	color: white; 
-}
-::selection {
-    background:rgba(0, 0, 0, 0.99);
-	color: white; 
-}
 
 /*********************************************
  * HEADERS
@@ -52,11 +44,26 @@ body {
 .reveal h5, 
 .reveal h6 {
 	margin: 0 0 20px 0;
-	color: black;
-	font-family: 'News Cycle', Impact, sans-serif;
+	color: #333;
+	font-family: Economica, sans-serif;
 	line-height: 0.9em;
-	
-	text-transform: uppercase;
+	letter-spacing: 0.02em;
+
+	text-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+}
+
+.reveal h1 {
+	text-shadow: 	0 1px 0 #ccc,
+					0 2px 0 #c9c9c9,
+					0 3px 0 #bbb,
+					0 4px 0 #b9b9b9,
+					0 5px 0 #aaa,
+					0 6px 1px rgba(0,0,0,.1),
+					0 0 5px rgba(0,0,0,.1),
+					0 1px 3px rgba(0,0,0,.3),
+					0 3px 5px rgba(0,0,0,.2),
+					0 5px 10px rgba(0,0,0,.25),
+					0 20px 20px rgba(0,0,0,.15);
 }
 
 
@@ -65,7 +72,7 @@ body {
  *********************************************/
 
 .reveal a:not(.image) {
-	color: darkblue;
+	color: #6495ed;
 	text-decoration: none;
 
 	-webkit-transition: color .15s ease;
@@ -75,14 +82,16 @@ body {
 	        transition: color .15s ease;
 }
 	.reveal a:not(.image):hover {
+		color: #6495ed;
+		
 		text-shadow: none;
 		border: none;
 		border-radius: 2px;
 	}
 
 .reveal .roll span:after {
-	color: #fff;
-	background: darkblue;
+	color: #ffe080;
+	background: #6495ed;
 }
 
 
@@ -108,7 +117,7 @@ body {
 
 	.reveal a:hover img {
 		background: rgba(255,255,255,0.2);
-		border-color: darkblue;
+		border-color: #6495ed;
 		
 		-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
 		   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
@@ -121,11 +130,10 @@ body {
  *********************************************/
 
 .reveal .controls a {
-	color: black;
+	color: #fff;
 }
 	.reveal .controls a.enabled {
-		color: darkblue;
-		opacity: 1;
+		color: #6495ed;
 		text-shadow: 0px 0px 2px hsla(185, 45%, 70%, 0.3);
 	}
 
@@ -135,10 +143,10 @@ body {
  *********************************************/
 
 .reveal .progress {
-	background: rgba(0,0,0,0.2);
+	background: #333;
 }
 	.reveal .progress span {
-		background: darkblue;
+		background: #6495ed;
 
 		-webkit-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
 		   -moz-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
