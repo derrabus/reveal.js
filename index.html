@@ -45,7 +45,7 @@
 				</section>
                 <section>
                     <h2>outline</h2>
-                    <p>code reuse</p>
+                    <p>object-oriented code reuse</p>
                     <p>anatomy of a trait</p>
                     <p>use-cases for traits</p>
                     <p>the dark side of traits</p>
@@ -72,6 +72,10 @@
     protected function handleError($message) {
         throw new MyException($message);
     }
+}
+
+class SomeClass extends MyError {
+    &#133;
 }</code></pre>
                     </section>
                     <section>
@@ -86,6 +90,10 @@
     protected function log($level, $message) { &#133; }
 
     &#133;
+}
+
+class SomeClass extends MyObject {
+    &#133;
 }</code></pre>
                     </section>
                     <section>
@@ -94,26 +102,81 @@
     protected function handleError($message) { &#133; }
     protected function log($level, $message) { &#133; }
     protected function sort($array) { &#133; }
-    protected function makeDbQuery($sql) { &#133; }
+    protected function queryDb($sql) { &#133; }
     protected function sendMail($to, $subject, $message) { &#133; }
+    protected function makeCoffee($type) { &#133; }
+    protected function orderPizza($toppings, $size) { &#133; }
+
+    &#133;
+}
+
+class SomeClass extends MyError {
+    &#133;
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>guess what?</h3>
+                        <p>inheritance is not a mechanism of code reuse</p>
+                        <p>this is not breaking news, is it?</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>class composition</h2>
+                    <section>
+                        <h3>composition over inheritance</h3>
+                        <img src="img/logger-composition.svg"/>
+                    </section>
+                    <section>
+                        <h3>pros</h3>
+                        <p>avoid tight coupling</p>
+                        <p>separation of concerns</p>
+                        <p>dependencies may be replaced</p>
+                        <p>improve testability</p>
+                    </section>
+                    <section>
+                        <h3>but&#133;</h3>
+                        <pre><code contenteditable>class SomeClass {
+    private $logger;
+
+    public function setLogger(Logger $logger) {
+        $this->logger = $logger;
+    }
+
+    private function log($level, $message) {
+        if (!is_null($this->logger)) {
+            $this->logger->log($level, $message);
+        }
+    }
 
     &#133;
 }</code></pre>
                     </section>
-                </section>
-                <section>
-                    <h2>guess what?</h2>
-                    <h3>inheritance is not a mechanism of code reuse</h3>
-                </section>
-                <section>
-                    <h2>composition over inheritance</h2>
-                    <h3>this is not breaking news, is it?</h3>
+                    <section>
+                        <h3>glue code pollution</h3>
+                        <p>classes need to handle their dependencies</p>
+                        <p>copy&amp;paste boilerplate code</p>
+                        <p>very low complexity though</p>
+                    </section>
+                    <section>
+                        <h3>what's missing?</h3>
+                        <p>there is no way to express composition on language level</p>
+                        <p>once again: inheritance is not the answer</p>
+                        <p><small>PS: introducing multiple inheritance isn't either</small></p>
+                    </section>
                 </section>
                 <section>
                     <h2>traits</h2>
-                    <p>
-
-                    </p>
+                    <h3>building blocks for classes</h3>
+                    <blockquote cite="http://springerlink.metapress.com/content/169mbraepn4gmyd2/">
+                        [&#133;] Our model is based on lightweight entities called traits, which serve as the basic
+                        building blocks for classes and the primitive units of code reuse. Thus, traits satisfy the
+                        needs for structure, modularization and reusability within a class.
+                    </blockquote>
+                    <p><small>
+                        Nathanael Schärli, Stéphane Ducasse, Oscar Nierstrasz, Andrew P. Black. Traits: Composable Units
+                        of Behaviour. Proceedings of the European Conference on Object-Oriented Programming (ECOOP).
+                        Lecture Notes in Computer Science, Volume 2743, Springer-Verlag, 2003, pp. 248-274
+                    </small></p>
                 </section>
 			</div>
 
