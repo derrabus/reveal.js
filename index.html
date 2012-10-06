@@ -68,7 +68,7 @@
                     </section>
                     <section>
                         <h3>level 1</h3>
-                        <pre><code contenteditable>abstract class MyError {
+                        <pre><code>abstract class MyError {
     protected function handleError($message) {
         throw new MyException($message);
     }
@@ -85,7 +85,7 @@ class SomeClass extends MyError {
                     </section>
                     <section>
                         <h3>level 2</h3>
-                        <pre><code contenteditable>abstract class MyObject {
+                        <pre><code>abstract class MyObject {
     protected function handleError($message) { &#133; }
     protected function log($level, $message) { &#133; }
 
@@ -98,7 +98,7 @@ class SomeClass extends MyObject {
                     </section>
                     <section>
                         <h3>level 3</h3>
-                        <pre><code contenteditable>abstract class MyAdamClass {
+                        <pre><code>abstract class MyAdamClass {
     protected function handleError($message) { &#133; }
     protected function log($level, $message) { &#133; }
     protected function sort($array) { &#133; }
@@ -135,7 +135,7 @@ class SomeClass extends MyError {
                     </section>
                     <section>
                         <h3>but&#133;</h3>
-                        <pre><code contenteditable>class SomeClass {
+                        <pre><code>class SomeClass {
     private $logger;
 
     public function setLogger(Logger $logger) {
@@ -166,17 +166,39 @@ class SomeClass extends MyError {
                 </section>
                 <section>
                     <h2>traits</h2>
-                    <h3>building blocks for classes</h3>
-                    <blockquote cite="http://springerlink.metapress.com/content/169mbraepn4gmyd2/">
-                        [&#133;] Our model is based on lightweight entities called traits, which serve as the basic
-                        building blocks for classes and the primitive units of code reuse. Thus, traits satisfy the
-                        needs for structure, modularization and reusability within a class.
-                    </blockquote>
-                    <p><small>
-                        Nathanael Schärli, Stéphane Ducasse, Oscar Nierstrasz, Andrew P. Black. Traits: Composable Units
-                        of Behaviour. Proceedings of the European Conference on Object-Oriented Programming (ECOOP).
-                        Lecture Notes in Computer Science, Volume 2743, Springer-Verlag, 2003, pp. 248-274
-                    </small></p>
+                    <section>
+                        <h3>building blocks for classes</h3>
+                        <blockquote cite="http://springerlink.metapress.com/content/169mbraepn4gmyd2/">
+                            [&#133;] Our model is based on lightweight entities called traits, which serve as the basic
+                            building blocks for classes and the primitive units of code reuse. Thus, traits satisfy the
+                            needs for structure, modularization and reusability within a class.
+                        </blockquote>
+                        <p><small>
+                            Nathanael Schärli, Stéphane Ducasse, Oscar Nierstrasz, Andrew P. Black. Traits: Composable Units
+                            of Behaviour. Proceedings of the European Conference on Object-Oriented Programming (ECOOP).
+                            Lecture Notes in Computer Science, Volume 2743, Springer-Verlag, 2003, pp. 248-274
+                        </small></p>
+                    </section>
+                    <section>
+                        <h3>example</h3>
+                        <pre><code class="language-php">trait LogTrait {
+    private function log($level, $message) {
+        &#133;
+    }
+}
+
+class SomeClass {
+    use LogTrait;
+
+    &#133;
+}</code></pre>
+                    </section>
+                    <section>
+                        <p>&quot;compiler-assisted copy&amp;paste&quot;</p>
+                        <p>large classes can be decomposed into traits</p>
+                        <p>traits can be shared across classes</p>
+                        <p>horizontal code reuse</p>
+                    </section>
                 </section>
 			</div>
 
