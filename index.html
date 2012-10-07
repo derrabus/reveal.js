@@ -123,7 +123,7 @@ class SomeClass extends MyError {
                 <section>
                     <h2>class composition</h2>
                     <section>
-                        <h3>composition over inheritance</h3>
+                        <h3>favor composition over inheritance</h3>
                         <img src="img/logger-composition.svg"/>
                     </section>
                     <section>
@@ -278,6 +278,66 @@ trait Subject {
         }
     }
 }</small></code></pre>
+                    </section>
+                </section>
+                <section>
+                    <h2>so&#133;</h2>
+                    <h3>&#133; traits are awesome?</h3>
+                </section>
+                <section>
+                    <h2>private access</h2>
+                    <section>
+                        <h3>back in the good ol' days&#133;</h3>
+                        <p class="fragment">&#133; private members were accessible within their own class only</p>
+                        <p class="fragment">well, breaking news: these days are gone</p>
+                    </section>
+                    <section>
+                        <h3>even worse</h3>
+                        <p>private methods may now define an interface</p>
+                        <p>communication between two traits</p>
+                        <p>communication between a trait and its host class</p>
+                    </section>
+                    <section>
+                        <h3>abstract private</h3>
+                        <p>however: abstract private is still now allowed</p>
+                        <pre><code>trait SayHello {
+    public function say() {
+        echo 'Hello ' . $this->getName() . '!' . "\n";
+    }
+
+    abstract protected function getName();
+}
+
+class SomeClass {
+    use SayHello;
+
+    private function getName() {
+        return 'World';
+    }
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>traits will touch your privates</h3>
+                        <p>readability fail</p>
+                        <p>changeability fail</p>
+                        <p>testability fail</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>testability</h2>
+                    <section>
+                        <h3>say hello to tight coupling again</h3>
+                        <p>testability issues with abstract classes apply here, too</p>
+                    </section>
+                    <section>
+                        <h3>proxy classes</h3>
+                        <p>traits cannot be tested directly, so we always need a proxy class</p>
+                        <p>PHPUnit provides a <code>getObjectForTrait()</code> method</p>
+                        <p><small>&#133; but it fails on traits with abstract members</small></p>
+                    </section>
+                    <section>
+                        <h3>depending on traits</h3>
+                        <p>classes cannot be tested without testing the trait</p>
                     </section>
                 </section>
 			</div>
