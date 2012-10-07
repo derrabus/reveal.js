@@ -336,8 +336,14 @@ class SomeClass {
                         <p><small>&#133; but it fails on traits with abstract members</small></p>
                     </section>
                     <section>
-                        <h3>depending on traits</h3>
-                        <p>classes cannot be tested without testing the trait</p>
+                        <h3>test isolation</h3>
+                        <p>a trait is a hard-wired dependency</p>
+                        <pre><code>class SomeClass {
+    use SomeTrait;
+
+    &#133;
+}</code></pre>
+                        <p class="fragment">classes cannot be tested without testing the trait</p>
                     </section>
                 </section>
 			</div>
