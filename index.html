@@ -180,8 +180,8 @@ class SomeClass extends MyError {
                         </small></p>
                     </section>
                     <section>
-                        <h3>example</h3>
-                        <pre><code class="language-php">trait LogTrait {
+                        <h3>the logger example</h3>
+                        <pre><code>trait LogTrait {
     private function log($level, $message) {
         &#133;
     }
@@ -198,6 +198,86 @@ class SomeClass {
                         <p>large classes can be decomposed into traits</p>
                         <p>traits can be shared across classes</p>
                         <p>horizontal code reuse</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>the singleton trait</h2>
+                    <section>
+                        <h3>without traits</h3>
+                        <pre><code>class SomeClass {
+    private static $instance;
+
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
+            self::$instance = new SomeClass;
+        }
+        return self::$instance;
+    }
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>with traits</h3>
+                        <pre><code>trait Singleton {
+    private static $instance;
+
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+}
+
+class SomeClass {
+    use Singleton;
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>disclaimer</h3>
+                        <p>I don't want to promote Singleton as a good pattern.</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>the observer trait</h2>
+                    <section>
+                        <h3>observer pattern</h3>
+                        <img src="img/wikipedia-observer.svg"/>
+                        <p>
+                            <small>
+                                source:
+                                <a href="http://en.wikipedia.org/wiki/Observer_pattern">http://en.wikipedia.org/wiki/Observer_pattern</a>
+                            </small>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>observer subject as trait</h3>
+                        <pre><code><small>interface Observer {
+    public function notify();
+}
+
+trait Subject {
+    private $observers = array();
+
+    public function registerObserver(Observer $observer) {
+        if (!in_array($observer, $this->observers, true)) {
+            $this->observers[] = $observer;
+        }
+    }
+
+    public function unregisterObserver(Observer $observer) {
+        foreach ($this->observers as $key => $current) {
+            if ($current === $observer) {
+                unset($this->observers[$key]);
+            }
+        }
+    }
+
+    public function notifyObservers() {
+        foreach ($this->observers as $current) {
+            $current->notify();
+        }
+    }
+}</small></code></pre>
                     </section>
                 </section>
 			</div>
