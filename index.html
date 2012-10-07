@@ -158,7 +158,7 @@ class SomeClass extends MyError {
                         <p>very low complexity though</p>
                     </section>
                     <section>
-                        <h3>a real world example</h3>
+                        <h3>real world boilerplate code</h3>
                         <img src="img/zend-eventmanager.png"/>
                         <p>
                             <small>
@@ -208,6 +208,25 @@ class SomeClass {
                         <p>large classes can be decomposed into traits</p>
                         <p>traits can be shared across classes</p>
                         <p>horizontal code reuse</p>
+                    </section>
+                    <section>
+                        <h3>abstract methods</h3>
+                        <p>traits may define abstract methods to indicate requirements</p>
+                        <pre><code>trait SayHello {
+    public function say() {
+        echo 'Hello ' . $this->getName() . '!' . "\n";
+    }
+
+    abstract protected function getName();
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>change member names and scope</h3>
+                        <pre><code>class SomeClass {
+    use SayHello {
+        SayHello::say as private yell;
+    }
+}</code></pre>
                     </section>
                 </section>
                 <section>
@@ -260,21 +279,31 @@ class SomeClass {
                         </p>
                     </section>
                     <section>
-                        <h3>observer subject as trait</h3>
-                        <pre><code><small>interface Observer {
+                        <h3>interfaces</h3>
+                        <pre><code>interface Observer {
     public function notify();
 }
 
-trait Subject {
+interface Subject {
+    public function registerObserver(Observer $observer);
+    public function unregisterObserver(Observer $observer);
+    public function notifyObservers();
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>the trait pt. I</h3>
+                        <pre><code>trait SubjectTrait {
     private $observers = array();
 
     public function registerObserver(Observer $observer) {
         if (!in_array($observer, $this->observers, true)) {
             $this->observers[] = $observer;
         }
-    }
-
-    public function unregisterObserver(Observer $observer) {
+    }</code></pre>
+                    </section>
+                    <section>
+                        <h3>the trait pt. II</h3>
+<pre><code>    public function unregisterObserver(Observer $observer) {
         foreach ($this->observers as $key => $current) {
             if ($current === $observer) {
                 unset($this->observers[$key]);
@@ -287,7 +316,14 @@ trait Subject {
             $current->notify();
         }
     }
-}</small></code></pre>
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>usage</h3>
+                        <pre><code>class SomeClass implements Subject {
+    use SubjectTrait;
+}</code></pre>
+                        <p>the trait serves as a default implementation for an interface</p>
                     </section>
                 </section>
                 <section>
@@ -306,25 +342,6 @@ trait Subject {
                         <p>private methods may now define an interface</p>
                         <p>communication between two traits</p>
                         <p>communication between a trait and its host class</p>
-                    </section>
-                    <section>
-                        <h3>abstract private</h3>
-                        <p>however: abstract private is still now allowed</p>
-                        <pre><code>trait SayHello {
-    public function say() {
-        echo 'Hello ' . $this->getName() . '!' . "\n";
-    }
-
-    abstract protected function getName();
-}
-
-class SomeClass {
-    use SayHello;
-
-    private function getName() {
-        return 'World';
-    }
-}</code></pre>
                     </section>
                     <section>
                         <h3>traits will touch your privates</h3>
