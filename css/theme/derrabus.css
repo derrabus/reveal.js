@@ -156,3 +156,28 @@ body {
 	}
 
 
+/*********************************************
+ * TABLES
+ *********************************************/
+.reveal table {
+    background-color: #333333;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid #ffe080;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-collapse: collapse;
+}
+
+.reveal table td,
+.reveal table th {
+    border: 1px solid #ffe080;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #ffc40d;
+}
+
+.reveal table th {
+    text-shadow: none;
+    font-family: Economica, sans-serif;
+    font-weight: bold;
+}
