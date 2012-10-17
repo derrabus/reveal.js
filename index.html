@@ -424,10 +424,6 @@ interface Subject {
                     </section>
                 </section>
                 <section>
-                    <h2>public interface</h2>
-                    <p>traits extend the public interface a class using it</p>
-                </section>
-                <section>
                     <h2>private access</h2>
                     <section>
                         <h3>back in the good ol' days&#133;</h3>
@@ -437,8 +433,10 @@ interface Subject {
                     <section>
                         <h3>even worse</h3>
                         <p>private methods may now define an interface</p>
-                        <p>communication between two traits</p>
-                        <p>communication between a trait and its host class</p>
+                        <div class="fragment">
+                            <p>communication between two traits</p>
+                            <p>communication between a trait and its host class</p>
+                        </div>
                     </section>
                     <section>
                         <h3>what's wrong here?</h3>
@@ -509,6 +507,26 @@ class SomeClass {
                     <p>use at your own risk</p>
                 </section>
                 <section>
+                    <h2>the logger revisited</h2>
+                    <pre><code>interface LoggerDependency {
+    public function setLogger(Logger $logger);
+}
+
+trait LoggerProvider {
+    private $logger;
+
+    public function setLogger(Logger $logger) {
+        $this->logger = $logger;
+    }
+
+    private function log($level, $message) {
+        if (!is_null($this->logger)) {
+            $this->logger->log($level, $message);
+        }
+    }
+}</code></pre>
+                </section>
+                <section>
                     <h2>I</h2>
                     <h3>keep your traits stupid</h3>
                     <div class="fragment">
@@ -552,10 +570,18 @@ class SomeClass {
                 </section>
                 <section>
                     <h2>IV</h2>
+                    <h3>team up with interfaces</h3>
+                    <p>a trait should not define a public interface</p>
+                    <p>if your trait adds functionality by extending the public interface of classes&#133;</p>
+                    <p>&#133; use an <code>interface</code> to indicate this</p>
+                </section>
+                <section>
+                    <h2>V</h2>
                     <h3>beware of the dark side</h3>
                     <div class="fragment">
                         <p>know what you're doing</p>
                         <p>don't just use traits because they're new and fancy</p>
+                        <p>add traits to your coding guidelines</p>
                     </div>
                 </section>
                 <section>
