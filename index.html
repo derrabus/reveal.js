@@ -189,7 +189,7 @@ class SomeClass extends MyError {
     use SomeTrait;
 
     &#133;
-}</pre></code>
+}</code></pre>
                         <p><em>&quot;compiler-assisted copy&amp;paste&quot;</em></p>
                     </section>
                     <section>
@@ -238,6 +238,13 @@ class SomeClass {
     }
 
     abstract protected function getName();
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>composite traits</h3>
+                        <p>you can use traits inside traits</p>
+                        <pre><code>trait FooBar {
+    use Foo, Bar;
 }</code></pre>
                     </section>
                     <section>
